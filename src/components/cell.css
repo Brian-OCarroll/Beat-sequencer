@@ -1,0 +1,8 @@
+.cell {
+    /* color: blue; */
+    /* background-color: blue; */
+    width:30px;
+    height:30px;
+    margin:15px;
+    display:inline-block;
+}
