@@ -1,16 +1,18 @@
-import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-// import ClapCell from './components/instrument'
-import Grid from './components/sequencerGrid'
-export default class App extends React.Component {
+import React, { Component } from 'react';
+import './App.css';
+import Pads from './components/Pads';
+import Controls from './components/Controls';
+
+class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        </header>
-        <Grid />
-      </div>
+        <div className="App">
+            <Controls />
+            <Pads />
+        </div>
     );
   }
 }
+
+export default App;
+
