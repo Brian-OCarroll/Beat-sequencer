@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 //control buttons
-export default class Controls extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-        render() {
+export default function Controls(props) {
+    
+        
             //alternate between text displaying Pause and Play
-            let buttonText = this.props.playing ? 'Pause' : 'Play';
+            let buttonText = props.playing ? 'Pause' : 'Play';
             return (
                 <div className="controls">
-                    <button className="control_buttons" onClick={() => this.props.togglePlaying()}>{buttonText}</button>
+                    <button className="control_buttons" onClick={() => props.togglePlaying()}>{buttonText}</button>
                     <div className="bpm">
                         <label>BPM:</label>
                         <input
@@ -18,16 +16,16 @@ export default class Controls extends React.Component {
                             min="1"
                             max="210"
                             step="1"
-                            defaultValue={this.props.bpm}
-                            onChange={this.props.handleChange} />
+                            defaultValue={props.bpm}
+                            onChange={props.handleChange} />
                         <output>
-                            {this.props.bpm}
+                            {props.bpm}
                         </output>
                     </div>
-                    <button className="control_buttons" onClick={() => this.props.addNewPads()}>+</button>
+                    <button className="control_buttons" onClick={() => props.addNewPads()}>+</button>
                 </div>
             );
-        }
+        
     
 }
 
