@@ -2,14 +2,15 @@ import React from 'react';
 import Pad from './Pad';
 import SampleSelector from './sampleSelector';
 import DeleteBtn from './DeleteButton'
+import { Row, Col } from 'antd';
 //map out each row and each of the pads within them
 const Pads = (props) => (
 	<div className="pads">
 		{props.pads.map((row, rowIndex) => {
 			return (
-				<div className="row" key={rowIndex}>
+				<Row gutter={8} className="row" key={rowIndex}>
 					<SampleSelector key={rowIndex} selectedDrum={props.selectedDrum[rowIndex]} createdDrums={props.createdDrums} onSelectDrum = {(e)=> props.onSelectDrum(e,rowIndex)} />
-					<div className="sample_volume">
+					<Col span={1.26} className="sample_volume">
 						<input
 							type="range"
 							id="volume"
@@ -18,7 +19,7 @@ const Pads = (props) => (
 							step={0.1}
 							defaultValue={props.sampleVolume[rowIndex]}
 							onChange={(e)=> props.changeVolume(e,rowIndex)} />
-					</div>
+					</Col>
 					{row.map((pad, index) => {
 						return <Pad
 							key={index}
@@ -28,9 +29,10 @@ const Pads = (props) => (
 							pos={props.pos}
 							toggleActive={() => props.toggleActive(rowIndex, index)} 
 							padNumber={index}/>
+							
 					})}
 					<DeleteBtn rowIndex={rowIndex} deleteRow={() => props.deleteRow(rowIndex)} clearRow={() => props.clearRow(rowIndex)} />
-				</div>
+				</Row>
 			)
 		})}
 	</div>
