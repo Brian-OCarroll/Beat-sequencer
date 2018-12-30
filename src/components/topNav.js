@@ -1,30 +1,56 @@
-import React from 'react';
-import {
-    BrowserRouter as Router,
-    Link
-} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { clearAuth } from '../actions/auth';
+import { clearAuthToken } from '../local-storage';
+//=====================================================================================================================================
+export class Header extends Component {
+  logout() {
+    this.props.dispatch(clearAuth());
+    clearAuthToken();
+  }
+  render() {
+    if (this.props.loggedIn) {
+      return (
+        <div className="Header">
+          <div id="logo" />
+          <div />
+          <div className="header-links">
+            <Link to="/home">Home</Link>
+          </div>
+          <div className="header-links">
+            <Link to="/Saved">Saved</Link>
+          </div>
+          <div className="header-links">
+            <Link to="/logout" onClick={() => this.logout()}>
+              Logout
+            </Link>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="Header">
+        <div id="logo" />
+        <div />
+        <div className="header-links">
+          <Link to="/home">Home</Link>
+        </div>
 
-//STILL NEED TO ADD PATHS
-//MAKE THE SAVED BEATS PAGE DYNAMIC. ONLY AVAILABLE AFTER SIGNIN
-//REFER TO
-// https://stackoverflow.com/questions/34607841/react-router-nav-bar-example
-export default function TopNav(props) {
-  return (
-      <Router>
-          <nav>
-                <ul className="clearfix">
-                    <li>
-                        {/* {insert pathnames} */}
-                        <Link aria-label className="homePage" to="/homepage path">Home</Link>
-                    </li>
-                    <li>
-                        <Link aria-label="makeBeats" className="beatsPage" to="/beats page path">Create</Link>
-                    </li>
-                    <li>
-                    <Link aria-label="SavedBeats" className="savedBeats" to="/saved beats page path">Create</Link>
-                    </li>
-                </ul>
-            </nav>
-      </Router> 
-  );
+        <div className="header-links">
+          <Link to="/saved">Saved</Link>
+        </div>
+        <div className="header-links">
+          <Link to="/login">Login</Link>
+        </div>
+        <div className="header-links">
+          <Link to="/register">Register</Link>
+        </div>
+      </div>
+    );
+  }
 }
+const mapStateToProps = state => ({
+  loggedIn: state.auth.currentUser !== null
+});
+export default connect(mapStateToProps)(Header);
