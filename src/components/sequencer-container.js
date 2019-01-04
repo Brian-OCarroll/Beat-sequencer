@@ -3,10 +3,13 @@ import Pads from './Pads';
 import Controls from './controls';
 import MIDISounds from 'midi-sounds-react';
 import SaveBtn from './save-button'
+import LoadBtn from './load-button'
+import { connect } from 'react-redux';
+import {API_BASE_URL} from '../config';
 // import Login from './components/login'
 
 
-export default class SeqContainer extends Component {
+export class SeqContainer extends Component {
 
   constructor() {
     super();
@@ -26,22 +29,44 @@ export default class SeqContainer extends Component {
       mute:false,
       open1: false,
       open2: false,
+      userPads: []
     }
     this.togglePlaying = this.togglePlaying.bind(this);
     this.toggleActive = this.toggleActive.bind(this);
     this.changeBpm = this.changeBpm.bind(this);
     this.changeSampleVolume = this.changeSampleVolume.bind(this);
     this.onSelectDrum = this.onSelectDrum.bind(this);
-    // this.LoadUserPads = this.LoadUserPads.bind(this); 
   }
 
-
+  componentWillMount() {
+    this.loadUsers();
+    // this.LoadUserPads();
+    // this.setState({ initialized: true });
+    // if(this.props.loggedIn) {
+    //   this.loadUsers();
+    // }
+};
 componentDidMount() {
-    // this.loadUsers();
+    this.loadUsers();
     // this.LoadUserPads();
     this.setState({ initialized: true });
+    // if(this.props.loggedIn) {
+    //   this.loadUsers();
+    // }
 };
 
+loadUsers() {
+  return fetch(API_BASE_URL+'/drums', {
+  headers:{
+      'Authorization': `Bearer ${this.props.token}`
+  }
+  })
+  .then(res => {return res.json()})
+  .then(res => this.setState({ userPads: res }))
+  .then(response => console.log('Success:',(response)))
+  .then(console.log(this.state.userPads))
+  .catch(error => console.error('Error:', error));
+}
 
 //copy pads state and get current pad value
 //use spread operator to clone pads array
@@ -141,6 +166,7 @@ sendVolumes(rowIndex, volume) {
 
 onSelectDrum(e, rowIndex) {
   var list = e.target;
+  console.log(e.target)
   let n = list.options[list.selectedIndex].getAttribute("value");
   let drumSelect = [...this.state.selectedDrum];
   //row drum only for console.log
@@ -151,7 +177,7 @@ onSelectDrum(e, rowIndex) {
 
   this.setState({ selectedDrum: drumSelect });
 
-  // console.log("Selected Drums: ", drumSelect);
+  console.log("Selected Drums: ", drumSelect);
   this.midiSounds.cacheDrum(n);
 }
 //figure out how this works
@@ -219,14 +245,14 @@ deleteRow = (rowIndex) => {
   // console.log(this.state.numPads);
 }
 
-clickPadButtons = (Array) => {
-  let newPads = Array;
+clickPadButtons = (loadPads, loadDrums) => {
+  let newPads = loadPads;
+  let newDrums = loadDrums;
   this.setState({ pads: newPads });
+  this.setState({selectedDrum: newDrums})
 }
 
   render() {
-    const { open1 } = this.state;
-    const { open2 } = this.state;
     return (
         <div className="App">
           <Pads
@@ -246,16 +272,23 @@ clickPadButtons = (Array) => {
             playing={this.state.playing}
             togglePlaying={this.togglePlaying}
             addNewPads={this.addNewPads} />
-          {/* <SaveBtn users={this.state.users} pads={this.state.pads} email={this.state.email} pads_users={this.state.pads_users} LoadUserPads={this.LoadUserPads()} clickPadButtons={this.clickPadButtons} /> */}
-          <SaveBtn />
+          <SaveBtn pads={this.state.pads} drums={this.state.selectedDrum}/>
+           <LoadBtn  clickPadButtons={this.clickPadButtons} userpads={this.state.userPads} />
           <MIDISounds
             ref={(ref) => (this.midiSounds = ref)}
             appElementName="root"
-            instruments={[111]}
-            // drums={[2, 33, 15, 5, 35, 24]} 
-            drums={[5, 25, 20, 35]} 
+            instruments={[234]}
+            drums={[2, 33, 15, 5, 35, 24]} 
+            // drums={[5, 25, 20, 35]} 
             />
         </div>
     );
   }
 };
+
+const mapStateToProps = state => ({
+  token: state.auth.authToken,
+  loggedIn: state.auth.currentUser !== null
+});
+
+export default connect(mapStateToProps)(SeqContainer);
