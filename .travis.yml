@@ -1,5 +1,12 @@
- language: node_js
- node_js: node
- cache:
-   directories:
-     - node_modules
+language: node_js
+node_js: node
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: pxz6ZEvtqwljQXDoMm+7TvyQm8OsrxEHW7QtzkgmOXv/oVVJgWtPrt+oyhPEnkdYS0AqvadDG7C08vuSvt/DaFbhNOdJzBzQFiLZbgmjuuuAAfoizLarmw7aaZz+onyKcUHV1Xi8XqirV01ZB4qjEY1MR/LslD3zOxTrN42q4vMzhc0DvDBT3og+0WkkG1vKetVE7qB3W8iI/UGdjRTZi9wANAq8QSpKziX7Donn6lwCicaivefwJxONPawIlznDaPxOzNNL5mKMxLgP70Il2DqkVswIMCVA/3TOilGrYF69NNI/SGc2d/0AcEngJTRx88kSKlB4bkm1Yx1BKeHniBj7V1iAJDfRoYqQMnZEqF/0W5FOFmPjTmyA8tBVnrReSCsSbC8xJsdh1kwTQ2igqnWlrs/i1hbeA9lGzY47jrVYBz/OFaC/dAp5Fp4AwuNOusubWndw9z42GHLP/BigjNSaSwGmd64aEkEK1GEnv5GVolXdK8N16UR8otc8LjujrXbm98rc1AmTFccOhPvxHZvMbj88k2v0rrBuqyrCIuOSQIkCAzswudPIYpcLF9Rf4LF6IH6I8DpJOOsd1O9tJlkkaJwSJuWGZPF2Yd1tHwDyp50UDDzDKd0fWWNmByJRv1eJNBkTNHGVG7/tVtxjMP55OJvknTcwhHBMMo4syZI=
+  app: hyperlooper
+  on:
+    repo: Brian-OCarroll/Beat-sequencer
