@@ -54,7 +54,9 @@ componentDidMount() {
     //   this.loadUsers();
     // }
 };
-
+componentWillReceiveProps() {
+  this.loadUsers();
+}
 loadUsers() {
   return fetch(API_BASE_URL+'/drums', {
   headers:{
@@ -254,7 +256,9 @@ clickPadButtons = (loadPads, loadDrums) => {
 
   render() {
     return (
+      <div className="main">
         <div className="App">
+          <h1>HyperLoop Drum Sequencer</h1>
           <Pads
             pos={this.state.position}
             pads={this.state.pads}
@@ -282,6 +286,8 @@ clickPadButtons = (loadPads, loadDrums) => {
             // drums={[5, 25, 20, 35]} 
             />
         </div>
+      </div>
+        
     );
   }
 };
