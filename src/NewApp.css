@@ -1,0 +1,43 @@
+ .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255,255,255,.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+.pad {
+  padding:25%;
+  width:50%;
+  background: #B1EDE8;
+    /* margin: 0 3px 3px 0; */
+  /* float:left; */
+}
+.pad:hover {
+  background: rgb(100, 237, 232);
+}
+
+.pad.active {
+  background: #6D435A;
+}
+
+.pad.playing {
+  background: #F8F7FF;
+  box-shadow: 0px 0px 20px 3px rgba(255, 105, 120, 0.39);
+}
+
+.pad.active.playing, .pad.active:hover {
+  background: #FF6978;
+}
+
+p.link a {
+  color: rgb(226, 208, 255);
+}
+.pads {
+  width:80%;
+  height:100%;
+}
+.row {
+  margin-bottom:15px;
+  height:100%;
+}

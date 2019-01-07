@@ -1,258 +1,79 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {Route, Switch, BrowserRouter, withRouter} from 'react-router-dom';
 import './App.css';
-import Pads from './components/Pads';
-import Controls from './components/controls';
-import MIDISounds from 'midi-sounds-react';
-export default class App extends Component {
+// import Login from './components/login'
 
-  constructor() {
-    super();
-    this.state = {
-      pads: [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-      ],  
-      numPads:4,
-      playing:false,
-      position:0,
-      bpm:120,
-      selectedDrum: [5,25,20,35],
-      volume: [0.5,0.5,0.5,0.5],
-      mute:false,
-      open1: false,
-      open2: false,
-    }
-    this.togglePlaying = this.togglePlaying.bind(this);
-    this.toggleActive = this.toggleActive.bind(this);
-    this.changeBpm = this.changeBpm.bind(this);
-    this.changeSampleVolume = this.changeSampleVolume.bind(this);
-    this.onSelectDrum = this.onSelectDrum.bind(this);
-    // this.LoadUserPads = this.LoadUserPads.bind(this); 
-  }
+import Header from './components/topNav'
+import LandingPage from './components/landing-page';
+import Dashboard from './components/dashboard';
+import RegistrationPage from './components/registration-page';
+import {refreshAuthToken} from './actions/auth';
+import SeqContainer from './components/sequencer-container';
+import  LoginPage  from './components/login-page';
+export class App extends Component {
+
+  // constructor() {
+  //   super();
+  // }
 
 
 componentDidMount() {
-    // this.loadUsers();
-    // this.LoadUserPads();
+
     this.setState({ initialized: true });
 };
-
-//copy pads state and get current pad value
-//use spread operator to clone pads array
-//toggle it to update state
-toggleActive(rowIndex, id) {
-  //log Pad row and column position
-  // console.log('Pad', rowIndex, id);
-  let pads = [...this.state.pads];
-  let padActive = pads[rowIndex][id];
-
-  if (padActive === 1) {
-    pads[rowIndex][id] = 0;
-  } else {
-    pads[rowIndex][id] = 1;
-  }
-
-  this.setState({ pads: pads });
-}
-
-togglePlaying() {
-  if (this.state.playing) {
-    clearInterval(this.timerId);
-    this.setState({ playing: false });
-  } else {
-    this.setTimer();
-    this.setState({ playing: true });
-  }
-}
-//tick the position forward and play a sound
-setTimer() {
-  this.timerId = setInterval(() => this.tick(), this.calculateTempo(this.state.bpm));
-}
-
-calculateTempo(bpm) {
-  return 15000 / bpm;
-}
-//increment the pad position by one and play the given instrument
-//by calling checkpad()
-tick() {
-  let pos = this.state.position;
-  pos++;
-  if (pos > 15) {
-    pos = 0;
-  }
-  this.setState({ position: pos });
-  this.checkPad();
-}
-
-checkPad() {
-  this.state.pads.forEach((row, rowIndex) => {
-    row.forEach((pad, index) => {
-      if (index === this.state.position && pad === 1) {
-        // console.log("active");
-        this.playSound(rowIndex);
-      };
-    })
-  });
-}
-
-playSound(rowIndex) {
-  // console.log("play");
-  let sample = this.state.selectedDrum[rowIndex];
-  this.midiSounds.playDrumsNow([sample]);
-}
-
-changeBpm(bpm) {
-  this.setState({ bpm: bpm.target.value });
-  if (this.state.playing) {
-    clearInterval(this.timerId);
-    this.setTimer();
+////////////////////////////////////////////////
+componentDidUpdate(prevProps) {
+  if (!prevProps.loggedIn && this.props.loggedIn) {
+      // When we are logged in, refresh the auth token periodically
+      this.startPeriodicRefresh();
+  } else if (prevProps.loggedIn && !this.props.loggedIn) {
+      // Stop refreshing when we log out
+      this.stopPeriodicRefresh();
   }
 }
 
-changeSampleVolume(e, rowIndex) {
-  // console.log("event: ", e, "row: ", rowIndex);
-  let rackVol = [...this.state.volume];
+componentWillUnmount() {
+  this.stopPeriodicRefresh();
+}
 
+startPeriodicRefresh() {
+  this.refreshInterval = setInterval(
+      () => this.props.dispatch(refreshAuthToken()),
+      60 * 60 * 1000 // One hour
+  );
+}
 
-  rackVol.splice(rowIndex, 1, e.target.value);
-  let sampleVol = rackVol[rowIndex];
-  this.setState({ volume: rackVol });
-
-  // console.log("rackVol: ", rackVol);
-  // console.log("sampleVol: ", sampleVol);
-  this.sendVolumes(rowIndex, sampleVol);
-
-  if (this.state.playing) {
-    clearInterval(this.timerId);
-    this.setTimer();
+stopPeriodicRefresh() {
+  if (!this.refreshInterval) {
+      return;
   }
+
+  clearInterval(this.refreshInterval);
 }
-
-sendVolumes(rowIndex, volume) {
-  // console.log("In change volume state. The selected Drums: ", this.state.selectedDrum[rowIndex], "The Volume: ", this.state.volume[rowIndex])
-  this.midiSounds.setDrumVolume(this.state.selectedDrum[rowIndex], volume);
-}
-
-onSelectDrum(e, rowIndex) {
-  var list = e.target;
-  let n = list.options[list.selectedIndex].getAttribute("value");
-  let drumSelect = [...this.state.selectedDrum];
-  //row drum only for console.log
-  let rowDrum = drumSelect[rowIndex];
-
-  drumSelect.splice(rowIndex, 1, n);
-  // console.log("ROW Drum: ", rowDrum, "Index: ", rowIndex);
-
-  this.setState({ selectedDrum: drumSelect });
-
-  // console.log("Selected Drums: ", drumSelect);
-  this.midiSounds.cacheDrum(n);
-}
-//figure out how this works
-//array of options
-createSelectItems() {
-  if (this.midiSounds) {
-    if (!(this.items)) {
-      this.items = [];
-      for (let i = 0; i < this.midiSounds.player.loader.drumKeys().length; i++) {
-        this.items.push(<option key={i} value={i}>{'' + (i + 0) + '. ' + this.midiSounds.player.loader.drumInfo(i).title}</option>);
-      }
-    }
-    return this.items;
-  }
-}
-
-addNewPads = () => {
-  var newArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  // console.log("state", this.state);
-  var newVol = 0.5
-  //set newDrum to default of 21(handClap)
-  var newDrum = 21
-  this.setState({ pads: [...this.state.pads, newArray] });
-  this.state.volume.push(newVol);
-  this.state.selectedDrum.push(newDrum);
-  // this.state.numPads++;
-  this.setState({
-    numPads: this.state.numPads+1
-  })
-  // console.log(this.state.numPads);
-}
-// iterate through individual pads in rows and change
-// on values(1) to off(0)
-clearRow = (rowIndex) => {
-  // console.log('Pad row:', rowIndex);
-  let pads = [...this.state.pads];
-  let padState = pads[rowIndex];
-  // console.log("padState: ", padState);
-  for (var i = 0; i < padState.length; i++) {
-    if (padState[i] === 1) {
-      pads[rowIndex][i] = 0;
-    }
-  }
-  // console.log("pushed pads: ", pads);
-  this.setState({ pads: pads });
-
-}
-
-deleteRow = (rowIndex) => {
-  let pads = [...this.state.pads];
-  let volume = [...this.state.volume];
-  let drums = [...this.state.selectedDrum];
-
-  pads.splice(rowIndex, 1);
-  volume.splice(rowIndex, 1);
-  drums.splice(rowIndex, 1);
-  // console.log("pushed pads: ", pads);
-  this.setState({ pads: pads });
-  this.setState({ volume: volume });
-  this.setState({ selectedDrum: drums });
-  // this.state.numPads--;
-  this.setState({
-    numPads: this.state.numPads-1
-  })
-  // console.log(this.state.numPads);
-}
-
-clickPadButtons = (Array) => {
-  let newPads = Array;
-  this.setState({ pads: newPads });
-}
-
+///////////////////////////////////////////////
   render() {
-    const { open1 } = this.state;
-    const { open2 } = this.state;
     return (
-      <div className="App">
-        <Pads
-          pos={this.state.position}
-          pads={this.state.pads}
-          toggleActive={this.toggleActive}
-          clearRow={this.clearRow}
-          deleteRow={this.deleteRow}
-          selectedDrum={this.state.selectedDrum}
-          createdDrums={this.createSelectItems()}
-          onSelectDrum={this.onSelectDrum}
-          sampleVolume={this.state.volume}
-          changeVolume={this.changeSampleVolume} />
-        <Controls
-          bpm={this.state.bpm}
-          handleChange={this.changeBpm}
-          playing={this.state.playing}
-          togglePlaying={this.togglePlaying}
-          addNewPads={this.addNewPads} />
-        {/* <SaveBtn users={this.state.users} pads={this.state.pads} email={this.state.email} pads_users={this.state.pads_users} LoadUserPads={this.LoadUserPads()} clickPadButtons={this.clickPadButtons} /> */}
-        <MIDISounds
-          ref={(ref) => (this.midiSounds = ref)}
-          appElementName="root"
-          instruments={[111]}
-          // drums={[2, 33, 15, 5, 35, 24]} 
-          drums={[5, 25, 20, 35]} 
-          />
-      </div>
+        <div className="Body">
+            <Header />
+            <Switch>
+                <Route exact={true} path="/" component={LandingPage} />
+                <Route path="/home" component = {SeqContainer} />
+                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/register" component={RegistrationPage} /> 
+                <Route path="/login" component={LoginPage} /> 
+                <Route path="/dashboard" component={Dashboard} /> 
+            </Switch>
+        </div>
     );
   }
 
 };
 
+const mapStateToProps = state => ({
+  hasAuthToken: state.auth.authToken !== null,
+  loggedIn: state.auth.currentUser !== null
+});
+
+// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+export default withRouter(connect(mapStateToProps)(App));

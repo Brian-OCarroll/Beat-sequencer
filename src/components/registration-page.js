@@ -11,10 +11,13 @@ export function RegistrationPage(props) {
         return <Redirect to="/home" />;
     }
     return (
-        <div className="home">
-            <h2>Register for HyperLoop</h2>
-            <RegistrationForm />
-            <Link to="/login">Login</Link>
+        <div className="home registration">
+            <div className="logRegContainer">
+                <h1>Register for HyperLoop</h1>
+                <RegistrationForm />
+                {/* <Link to="/login">Login</Link> */}
+            </div>
+           
         </div>
     );
 }

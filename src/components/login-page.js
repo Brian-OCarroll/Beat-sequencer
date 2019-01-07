@@ -11,9 +11,13 @@ export function LoginPage(props) {
   }
 
   return (
-    <div className="Login">
-      <h2>Welcome to HyperLoop</h2>
-      <LoginForm />
+    <div className="home Login">
+      <div className="logRegContainer" >
+        <h1>Welcome to HyperLoop</h1>
+        <LoginForm />
+        <h2>Demo User: demotest</h2>
+        <h2>Demo Pass: demotester</h2>
+      </div>
     </div>
   );
 }
