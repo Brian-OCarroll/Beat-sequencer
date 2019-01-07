@@ -19,6 +19,7 @@ export class LoadBtn extends React.Component {
     }
     componentDidUpdate() {
         this.props.clickPadButtons(this.state.selectedPads, this.state.selectedDrums)
+        
     }
     onOpenModal = () => {
         this.setState({ open: true });
@@ -26,22 +27,21 @@ export class LoadBtn extends React.Component {
         // console.log(this.props.userpads[0].name)
         
     };
- 
+    // loadUsers() {
+    //     return fetch(API_BASE_URL+'/drums', {
+    //     headers:{
+    //         'Authorization': `Bearer ${this.props.token}`
+    //     }
+    //     })
+    //     .then(res => {return res.json()})
+    //     .then(res => this.setState({ userPads: res }))
+    //     .then(response => console.log('Success:',(response)))
+    //     .then(console.log(this.state.userPads))
+    //     .catch(error => console.error('Error:', error));
+    // }
     onCloseModal = () => {
         this.setState({ open: false });
     };
-    // onClick = (rowIndex) => {
-    //     // const pads = this.state.selectedPads
-    //     // const drums = this.state.selectedDrums
-    //     // if (pads && drums && this.props.onAdd) {
-    //     //     this.props.onAdd(pads, drums);
-    //     // }
-    //     // console.log(this.props.userpads)
-    //     const drums = this.props.userpads[rowIndex]
-    //     const pads = this.props.userpads[rowIndex]
-    //     console.log(drums)
-    //     console.log(pads)
-    // }
 
     ClickPads = (rowIndex, event) => {
     console.log(rowIndex);
