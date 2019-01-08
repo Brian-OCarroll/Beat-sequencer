@@ -54,11 +54,28 @@ componentDidMount() {
     // if(this.props.loggedIn) {
     //   this.loadUsers();
     // }
+    this.changeMasterEchoNone();
+    this.changeMasterPower();
+    
 };
 componentWillReceiveProps() {
   this.loadUsers();
 }
-
+changeMasterPower() {
+  this.midiSounds.setBand32(2);
+  this.midiSounds.setBand64(4);
+  this.midiSounds.setBand128(3);
+  this.midiSounds.setBand256(-2);
+  this.midiSounds.setBand512(-3);
+  this.midiSounds.setBand1k(1);
+  this.midiSounds.setBand2k(2);
+  this.midiSounds.setBand4k(3);
+  this.midiSounds.setBand8k(-3);
+  this.midiSounds.setBand16k(1);
+}
+changeMasterEchoNone() {
+  this.midiSounds.setEchoLevel(0);
+}
 refresh = () => {
   this.loadUsers();
   this.setState({loaded: false}, function() {this.setState({loaded: true})})
