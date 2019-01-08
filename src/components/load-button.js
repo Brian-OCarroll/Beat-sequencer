@@ -25,8 +25,11 @@ export class LoadBtn extends React.Component {
         this.setState({ open: true });
         console.log(this.props.log.id)
         // console.log(this.props.userpads[0].name)
-        
     };
+
+    //function to refresh parent state
+    //callback
+
     // loadUsers() {
     //     return fetch(API_BASE_URL+'/drums', {
     //     headers:{
@@ -64,7 +67,7 @@ export class LoadBtn extends React.Component {
             return (
                 <div className="loadTool">
                     <button className="loadBtn" onClick={this.onOpenModal}> Load Pattern </button>
-                    <Modal open={open} onClose={this.onCloseModal} little>
+                    <Modal open={open} onClose={this.onCloseModal}  little>
                         <p>Load Sequence</p>
                         {padNames}
                     </Modal>

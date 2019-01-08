@@ -29,7 +29,8 @@ export class SeqContainer extends Component {
       mute:false,
       open1: false,
       open2: false,
-      userPads: []
+      userPads: [],
+      loaded:true
     }
     this.togglePlaying = this.togglePlaying.bind(this);
     this.toggleActive = this.toggleActive.bind(this);
@@ -57,6 +58,13 @@ componentDidMount() {
 componentWillReceiveProps() {
   this.loadUsers();
 }
+
+refresh = () => {
+  this.loadUsers();
+  this.setState({loaded: false}, function() {this.setState({loaded: true})})
+  console.log(this.state.userPads)
+}
+
 loadUsers() {
   return fetch(API_BASE_URL+'/drums', {
   headers:{
@@ -276,8 +284,10 @@ clickPadButtons = (loadPads, loadDrums) => {
             playing={this.state.playing}
             togglePlaying={this.togglePlaying}
             addNewPads={this.addNewPads} />
-          <SaveBtn pads={this.state.pads} drums={this.state.selectedDrum}/>
-           <LoadBtn  clickPadButtons={this.clickPadButtons} userpads={this.state.userPads} />
+          {/* <SaveBtn onUpdate={this.refresh} pads={this.state.pads} drums={this.state.selectedDrum}/> */}
+          {this.state.loaded && <SaveBtn onUpdate={this.refresh} pads={this.state.pads} drums={this.state.selectedDrum}/>}
+          {this.state.loaded && <LoadBtn  clickPadButtons={this.clickPadButtons} userpads={this.state.userPads} />}
+   
           <MIDISounds
             ref={(ref) => (this.midiSounds = ref)}
             appElementName="root"
