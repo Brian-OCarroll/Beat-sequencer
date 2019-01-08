@@ -5,9 +5,9 @@ import {Link, Redirect} from 'react-router-dom';
 
 export function LandingPage(props) {
     // If we are logged in redirect straight to the user's dashboard
-    if (props.loggedIn) {
-        return <Redirect to="/home" />;
-    }
+    // if (props.loggedIn) {
+    //     return <Redirect to="/home" />;
+    // }
 
     return (
         <div className="home">
