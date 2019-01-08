@@ -21,6 +21,23 @@ h1 {
   /* width:75%; */
   text-align:center;
 }
+.overlay a {
+  background: rgb(184, 78, 88);
+  color: #eee;
+  margin-left: 15px;
+  margin-top: 9px;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  padding: 5px 12px;	
+  outline:none;
+  text-decoration: none;
+}
+.overlay a:hover{
+  background: rgb(255, 73, 91)
+}
 .main, .home {
   height: 100vh;
       /* background-color: rgba(79, 109, 163, 0.678); */
@@ -57,7 +74,7 @@ h1 {
 .home p, .home a  {
   font-size:1.5em;
 }  
-.home a {
+.logRegContainer a {
   background:rgb(83, 78, 78);
   margin-bottom:10px;
 }
