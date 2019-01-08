@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Route, Switch, BrowserRouter, withRouter} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import './App.css';
 // import Login from './components/login'
 
@@ -12,10 +12,6 @@ import {refreshAuthToken} from './actions/auth';
 import SeqContainer from './components/sequencer-container';
 import  LoginPage  from './components/login-page';
 export class App extends Component {
-
-  // constructor() {
-  //   super();
-  // }
 
 
 componentDidMount() {
