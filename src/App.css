@@ -151,8 +151,8 @@ h1 {
       float: left;
       margin: 0 3px 3px 0;
       cursor: pointer;
-      background: #B1EDE8;
-      /* background: rgb(224, 224, 3); */
+      /* background: #B1EDE8; */
+      background: rgb(169, 245, 173);
       border-radius: 3px;
       flex:auto;
   }
@@ -175,7 +175,8 @@ h1 {
   }
   
   .pad.active {
-      background: #6D435A;
+      /* background: rgb(218, 117, 172); */
+      background: rgb(57, 133, 124)
       /* background: rgb(121, 55, 91); */
       /* background: rgb(134, 1, 134); */
 
