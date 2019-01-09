@@ -41,11 +41,8 @@ export class SeqContainer extends Component {
 
   componentWillMount() {
     this.loadUsers();
-    // this.LoadUserPads();
-    // this.setState({ initialized: true });
-    // if(this.props.loggedIn) {
-    //   this.loadUsers();
-    // }
+
+
 };
 componentDidMount() {
     this.loadUsers();
@@ -280,6 +277,7 @@ clickPadButtons = (loadPads, loadDrums) => {
 }
 
   render() {
+
     return (
       <div className="main">
         <div className="App">
@@ -301,7 +299,7 @@ clickPadButtons = (loadPads, loadDrums) => {
             playing={this.state.playing}
             togglePlaying={this.togglePlaying}
             addNewPads={this.addNewPads} />
-          {/* <SaveBtn onUpdate={this.refresh} pads={this.state.pads} drums={this.state.selectedDrum}/> */}
+          
           {this.state.loaded && <SaveBtn onUpdate={this.refresh} pads={this.state.pads} drums={this.state.selectedDrum}/>}
           {this.state.loaded && <LoadBtn  clickPadButtons={this.clickPadButtons} userpads={this.state.userPads} />}
    

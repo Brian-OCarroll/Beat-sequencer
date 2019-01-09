@@ -8,10 +8,10 @@ const Pads = (props) => (
 	<div className="pads">
 		{props.pads.map((row, rowIndex) => {
 			return (
-				<Row gutter={8} className="row" key={rowIndex}>
+				<div className="row" key={rowIndex}>
 					<SampleSelector key={rowIndex} selectedDrum={props.selectedDrum[rowIndex]} createdDrums={props.createdDrums} onSelectDrum = {(e)=> props.onSelectDrum(e,rowIndex)} />
-					<Col span={1.26} className="sample_volume">
-						<input
+					
+						<input className="sample_volume"
 							type="range"
 							id="volume"
 							min={0.0}
@@ -19,7 +19,7 @@ const Pads = (props) => (
 							step={0.1}
 							defaultValue={props.sampleVolume[rowIndex]}
 							onChange={(e)=> props.changeVolume(e,rowIndex)} />
-					</Col>
+					
 					{row.map((pad, index) => {
 						return <Pad
 							key={index}
@@ -32,7 +32,7 @@ const Pads = (props) => (
 							
 					})}
 					<DeleteBtn rowIndex={rowIndex} deleteRow={() => props.deleteRow(rowIndex)} clearRow={() => props.clearRow(rowIndex)} />
-				</Row>
+				</div>
 			)
 		})}
 	</div>

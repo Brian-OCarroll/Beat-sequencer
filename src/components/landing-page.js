@@ -17,6 +17,7 @@ export function LandingPage(props) {
                 <p>Tracks can be added and removed with the click of a button and if logged in can be saved for 
                     future use.</p>
                 <p>Click the midi-sounds logo for customizable EQ settings.</p>
+                <p>If on a mobile device, orient it in the landscape position for full functionality</p>
                 <Link to="/home">Home</Link>
             </div>
         </div>

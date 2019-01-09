@@ -14,9 +14,9 @@ export default class SampleSelector extends React.Component {
 
     render() {
         return (
-            <Col span={1.26}>
+            
                 <select className="selector" autoFocus value={this.props.selectedDrum} onChange={this.props.onSelectDrum.bind(this)} onBlur={this.close}>{this.props.createdDrums}</select>
-            </Col>
+            
         )
     };
 }

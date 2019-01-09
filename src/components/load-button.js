@@ -75,7 +75,7 @@ export class LoadBtn extends React.Component {
             )
         }
         return (
-            <div></div>
+            <div><h2>Login to save and load loops</h2></div>
         )
     };
 }

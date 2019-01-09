@@ -1,6 +1,6 @@
 * {
-  /* margin:0; */
-  /* padding:0; */
+  /* margin:0;
+  padding:0; */
   box-sizing:border-box;
   font-family: 'PT Sans', sans-serif;
 }
@@ -47,8 +47,8 @@ h1 {
       background-size: cover;
       color: white;
       padding-top:50px;
-      /* z-index: -1; 
-      background-color: hsla(0,0%,100%,.3);
+       /* z-index: -1;  */
+      /* background-color: hsla(0,0%,100%,.3);
       background-blend-mode: overlay;  */
 }
 .loginButton, .logRegContainer a {
@@ -82,11 +82,12 @@ h1 {
   .App {
     margin-left:auto;
     margin-right:auto;
-    width:80%;
+    max-width:1400px;
+    /* width:80%; */
       display: flex;
       align-items: center;
       flex-direction: column;
-      justify-content: center;
+      /* justify-content: center; */
       background-color: rgba(134, 82, 85, 0.541);
   }
   
@@ -111,21 +112,7 @@ h1 {
       outline: none;
       cursor: pointer;
   }
-  /* .logRegContainer a {
-    background: rgb(184, 78, 88);
-    color: #eee;
-    margin-left: 15px;
-    margin-top: 9px;
-    border-radius: 3px;
-    border: none;
-    font-size: 14px;
-    letter-spacing: 1px;
-    font-weight: bold;
-    padding: 7px 14px;	
-    outline: none;
-    cursor: pointer;
-    text-decoration: none;
-  } */
+
   button:hover{
       background: rgb(255, 73, 91)
   }
@@ -134,7 +121,7 @@ h1 {
   .bpm {
     margin-top: 15px;
     float: right;
-    color: #FF6978;
+    color: #B1EDE8;
     font-weight: bold;
   }
   
@@ -153,7 +140,9 @@ h1 {
   }
   
   .row {
-      clear: both;
+      /* clear: both; */
+      display:flex;
+      align-items: center
   }
   
   .pad {
@@ -165,13 +154,16 @@ h1 {
       background: #B1EDE8;
       /* background: rgb(224, 224, 3); */
       border-radius: 3px;
+      flex:auto;
   }
   
   .pads{
     margin-top: 15px;
       width: 100%;
-      margin-left: 23vh;
-      margin-right: 10vh;
+      /* display:flex;
+      flex-direction: column */
+      /* margin-left: 23vh;
+      margin-right: 10vh; */
   }
   
   #pad0, #pad4, #pad8, #pad12 {
@@ -203,20 +195,31 @@ h1 {
   }
   
   .selector{
-    float: left;
+     /* get rid of float to make volume and selector stack */
+    /* float: left; */
     align-items: center;
     margin-top:18px;
     margin-right:15px;
+    flex:auto;
+    /* flex: 1 */
+    /* flex-basis:1;
+    flex-grow:0;
+    flex-shrink:0; */
+    /* width:100% */
   }
   
   .DeleteBtn{
-    float: left;
+    /* float: left; */
+    display:flex;
+    flex:auto;
   }
   .sample_volume{
-    float: left;
-    align-items: center;
+    /* float: left; */
+    /* align-items: center; */
+    flex:auto;
     margin-top:18px;
     margin-right:15px;
+    /* width:100% */
   }
   
   .sample_output{
@@ -269,21 +272,25 @@ h1 {
   } 
   
   .clearIcon{
-    margin-top: 18px;
+    margin-top: 15px;
     margin-left: 15px;
     height: 25px;
     width: 25px;
-    background-color:#FF6978;
+    flex:auto;
+    /* background-color:#FF6978; */
   }
   
   .deleteIcon{
-    margin-top: 18px;
+    margin-top: 15px;
     margin-left: 15px;
     height: 25px;
     width: 25px;
+    flex:auto;
     /* color:#FF6978; */
-
   }
   
-  
-  
+  @media only screen and (max-width: 1000px) {
+ .DeleteBtn {
+   flex-direction: column
+ }
+  }
