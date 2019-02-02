@@ -2,7 +2,6 @@ import React from 'react';
 import Pad from './Pad';
 import SampleSelector from './sampleSelector';
 import DeleteBtn from './DeleteButton'
-import { Row, Col } from 'antd';
 //map out each row and each of the pads within them
 const Pads = (props) => (
 	<div className="pads">

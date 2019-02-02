@@ -1,5 +1,4 @@
 import React from 'react';
-import {Col} from 'antd'
 export default function Pad(props) {
     return (
         //use conditional classname to update the style 

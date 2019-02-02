@@ -15,8 +15,8 @@ export function LoginPage(props) {
       <div className="logRegContainer" >
         <h1>Welcome to HyperLoop</h1>
         <LoginForm />
-        <h2>Demo User: demotest</h2>
-        <h2>Demo Pass: demotester</h2>
+        <h2 className="test">Demo User: demotest</h2>
+        <h2 className="test">Demo Pass: demotester</h2>
       </div>
     </div>
   );

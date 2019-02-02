@@ -1,5 +1,4 @@
 import React from 'react';
-import {Col} from 'antd';
 import erase from '../assets/images/eraser.svg'    
 import delete1 from '../assets/images/delete.svg'
 export default function DeleteBtn(props) {

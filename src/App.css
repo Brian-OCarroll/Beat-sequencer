@@ -1,26 +1,29 @@
 * {
   /* margin:0;
   padding:0; */
-  box-sizing:border-box;
+  box-sizing: border-box;
   font-family: 'PT Sans', sans-serif;
 }
-body{
-    font-family: 'Roboto', sans-serif;
-    margin:0;
-    padding:0;
-    height:100%;
-    
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
+
 h1 {
   font-weight: 700;
-  font-size:2.5em;
+  font-size: 2.5em;
 }
+
 .overlay {
-  background-color: rgba(0, 0, 0, 0.199); 
-  padding-bottom:15px;
+  background-color: rgba(0, 0, 0, 0.199);
+  padding-bottom: 15px;
   /* width:75%; */
-  text-align:center;
+  text-align: center;
 }
+
 .overlay a {
   background: rgb(184, 78, 88);
   color: #eee;
@@ -31,267 +34,280 @@ h1 {
   font-size: 14px;
   letter-spacing: 1px;
   font-weight: bold;
-  padding: 5px 12px;	
-  outline:none;
+  padding: 5px 12px;
+  outline: none;
   text-decoration: none;
 }
-.overlay a:hover{
+
+.overlay a:hover {
   background: rgb(255, 73, 91)
+}
+.test {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;;
+  color: rgb(187, 187, 255);
+  font-size:1.2em !important;
+}
+.form-input {
+  margin:10px;
 }
 .main, .home {
   height: 100vh;
-      /* background-color: rgba(79, 109, 163, 0.678); */
-      background-image: url(../src/assets/images/bodybackground.jpg);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      color: white;
-      padding-top:50px;
-       /* z-index: -1;  */
-      /* background-color: hsla(0,0%,100%,.3);
+  /* background-color: rgba(79, 109, 163, 0.678); */
+  background-image: url(../src/assets/images/bodybackground.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  padding-top: 50px;
+  /* z-index: -1;  */
+  /* background-color: hsla(0,0%,100%,.3);
       background-blend-mode: overlay;  */
 }
+
 .loginButton, .logRegContainer a {
-  float:none;
+  float: none;
 }
+
 .home {
-  padding-top:10%;
+  padding-top: 5%;
   font-weight: 700;
-  width:100%;
-  
-  
+  width: 100%;
 }
+
 .logRegContainer {
-  text-align:center;
-  margin:9%;
+  text-align: center;
+  margin: 9%;
 }
+
 .logRegContainer * {
-  font-size:1.1em
+  font-size: 1.1em
 }
+
 .logRegContainer h1 {
-  font-size:2.5em
+  font-size: 2.5em
 }
-.home p, .home a  {
-  font-size:1.5em;
-}  
+
+.home p, .home a {
+  font-size: 1.5em;
+}
+
 .logRegContainer a {
-  background:rgb(83, 78, 78);
-  margin-bottom:10px;
+  background: rgb(83, 78, 78);
+  margin-bottom: 10px;
 }
 
-  .App {
-    margin-left:auto;
-    margin-right:auto;
-    max-width:1400px;
-    /* width:80%; */
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      /* justify-content: center; */
-      background-color: rgba(134, 82, 85, 0.541);
-  }
-  
-  .controls {
-      margin-bottom: 20px;
-      width: 456px;
-      margin-top: 20px;  
-  }
-  
-  button {
-      background: rgb(184, 78, 88);
-      color: #eee;
-      margin-left: 15px;
-      margin-top: 9px;
-      border-radius: 3px;
-      border: none;
-      font-size: 14px;
-      letter-spacing: 1px;
-      font-weight: bold;
-      padding: 7px 14px;	
-      float: left;
-      outline: none;
-      cursor: pointer;
-  }
+.App {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1400px;
+  /* width:80%; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* justify-content: center; */
+  background-color: rgba(134, 82, 85, 0.541);
+}
 
-  button:hover{
-      background: rgb(255, 73, 91)
-  }
-  
-  
-  .bpm {
-    margin-top: 15px;
-    float: right;
-    color: #B1EDE8;
-    font-weight: bold;
-  }
-  
-  .bpm label {
-      margin: 3px 5px 0 0;
-      float: left;
-  }
-  
-  .bpm input {
-      float: left;
-  }
-  
-  .bpm output {
-      float: left;
-      margin: 3px 0 0 5px;
-  }
-  
-  .row {
-      /* clear: both; */
-      display:flex;
-      align-items: center
-  }
-  
-  .pad {
-      width: 50px;
-      height: 50px;
-      float: left;
-      margin: 0 3px 3px 0;
-      cursor: pointer;
-      /* background: #B1EDE8; */
-      background: rgb(169, 245, 173);
-      border-radius: 3px;
-      flex:auto;
-  }
-  
-  .pads{
-    margin-top: 15px;
-      width: 100%;
-      /* display:flex;
+.controls {
+  margin-bottom: 20px;
+  width: 456px;
+  margin-top: 20px;
+}
+
+button {
+  background: rgb(184, 78, 88);
+  color: #eee;
+  margin-left: 15px;
+  margin-top: 9px;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  padding: 7px 14px;
+  float: left;
+  outline: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: rgb(255, 73, 91)
+}
+
+.bpm {
+  margin-top: 15px;
+  float: right;
+  color: #B1EDE8;
+  font-weight: bold;
+}
+
+.bpm label {
+  margin: 3px 5px 0 0;
+  float: left;
+}
+
+.bpm input {
+  float: left;
+}
+
+.bpm output {
+  float: left;
+  margin: 3px 0 0 5px;
+}
+
+.row {
+  /* clear: both; */
+  display: flex;
+  align-items: center
+}
+
+.pad {
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin: 0 3px 3px 0;
+  cursor: pointer;
+  /* background: #B1EDE8; */
+  background: rgb(169, 245, 173);
+  border-radius: 3px;
+  flex: auto;
+}
+
+.pads {
+  margin-top: 15px;
+  width: 100%;
+  /* display:flex;
       flex-direction: column */
-      /* margin-left: 23vh;
+  /* margin-left: 23vh;
       margin-right: 10vh; */
-  }
-  
-  #pad0, #pad4, #pad8, #pad12 {
-    border-left: 2px solid #FF6978;
-  }
-  
-  .pad:hover {
-      background: rgb(100, 237, 232);
-  }
-  
-  .pad.active {
-      /* background: rgb(218, 117, 172); */
-      background: rgb(57, 133, 124)
-      /* background: rgb(121, 55, 91); */
-      /* background: rgb(134, 1, 134); */
+}
 
-  }
-  
-  .pad.playing {
-      background: #F8F7FF;
-      box-shadow: 0px 0px 20px 3px rgba(255, 105, 120, 0.39);
-  }
-  
-  .pad.active.playing, .pad.active:hover {
-      background: #FF6978;
-  }
-  
-  p.link a {
-      color: rgb(226, 208, 255);
-  }
-  
-  .selector{
-     /* get rid of float to make volume and selector stack */
-    /* float: left; */
-    align-items: center;
-    margin-top:18px;
-    margin-right:15px;
-    flex:auto;
-    /* flex: 1 */
-    /* flex-basis:1;
+#pad0, #pad4, #pad8, #pad12 {
+  border-left: 2px solid #FF6978;
+}
+
+.pad:hover {
+  background: rgb(100, 237, 232);
+}
+
+.pad.active {
+  /* background: rgb(218, 117, 172); */
+  background: rgb(57, 133, 124)
+  /* background: rgb(121, 55, 91); */
+  /* background: rgb(134, 1, 134); */
+}
+
+.pad.playing {
+  background: #F8F7FF;
+  box-shadow: 0px 0px 20px 3px rgba(255, 105, 120, 0.39);
+}
+
+.pad.active.playing, .pad.active:hover {
+  background: #FF6978;
+}
+
+p.link a {
+  color: rgb(226, 208, 255);
+}
+
+.selector {
+  /* get rid of float to make volume and selector stack */
+  /* float: left; */
+  align-items: center;
+  margin-top: 18px;
+  margin-right: 15px;
+  flex: auto;
+  /* flex: 1 */
+  /* flex-basis:1;
     flex-grow:0;
     flex-shrink:0; */
-    /* width:100% */
+  /* width:100% */
+}
+
+.DeleteBtn {
+  /* float: left; */
+  display: flex;
+  flex: auto;
+}
+
+.sample_volume {
+  /* float: left; */
+  /* align-items: center; */
+  flex: auto;
+  margin-top: 18px;
+  margin-right: 15px;
+  /* width:100% */
+}
+
+.sample_output {
+  margin-right: 4px;
+}
+
+.control_button {
+  background: lightblue;
+  color: #eee;
+  margin-left: 15px;
+  margin-top: 9px;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  padding: 7px 14px;
+  float: left;
+  outline: none;
+  cursor: pointer;
+}
+
+.login_modal_button {
+  background: #FF6978;
+  color: #eee;
+  margin-top: 9px;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  padding: 7px 14px;
+  outline: none;
+  cursor: pointer;
+  float: left;
+  width: 100px;
+  height: 35px;
+}
+
+.form_email {
+  margin-bottom: 25px;
+}
+
+.form_password {
+  margin-bottom: 25px;
+}
+
+.label {
+  margin-right: 17px;
+}
+
+.clearIcon {
+  margin-top: 15px;
+  margin-left: 15px;
+  height: 25px;
+  width: 25px;
+  flex: auto;
+  /* background-color:#FF6978; */
+}
+
+.deleteIcon {
+  margin-top: 15px;
+  margin-left: 15px;
+  height: 25px;
+  width: 25px;
+  flex: auto;
+  /* color:#FF6978; */
+}
+
+@media only screen and (max-width: 1000px) {
+  .DeleteBtn {
+    flex-direction: column
   }
-  
-  .DeleteBtn{
-    /* float: left; */
-    display:flex;
-    flex:auto;
-  }
-  .sample_volume{
-    /* float: left; */
-    /* align-items: center; */
-    flex:auto;
-    margin-top:18px;
-    margin-right:15px;
-    /* width:100% */
-  }
-  
-  .sample_output{
-    margin-right:4px;
-  
-  }
-  
-  .control_button {
-      background: lightblue;
-      color: #eee;
-      margin-left: 15px;
-      margin-top: 9px;
-      border-radius: 3px;
-      border: none;
-      font-size: 14px;
-      letter-spacing: 1px;
-      font-weight: bold;
-      padding: 7px 14px;	
-      float: left;
-      outline: none;
-      cursor: pointer;
-  }
-  
-  .login_modal_button {
-      background: #FF6978;
-      color: #eee;
-      margin-top: 9px;
-      border-radius: 3px;
-      border: none;
-      font-size: 14px;
-      letter-spacing: 1px;
-      font-weight: bold;
-      padding: 7px 14px;	
-      outline: none;
-      cursor: pointer;
-      float: left;
-      width: 100px;
-      height: 35px;
-  }
-  
-  .form_email{
-    margin-bottom: 25px;
-  }
-  .form_password{
-    margin-bottom: 25px;
-  }
-  
-  .label{
-    margin-right: 17px;
-  } 
-  
-  .clearIcon{
-    margin-top: 15px;
-    margin-left: 15px;
-    height: 25px;
-    width: 25px;
-    flex:auto;
-    /* background-color:#FF6978; */
-  }
-  
-  .deleteIcon{
-    margin-top: 15px;
-    margin-left: 15px;
-    height: 25px;
-    width: 25px;
-    flex:auto;
-    /* color:#FF6978; */
-  }
-  
-  @media only screen and (max-width: 1000px) {
- .DeleteBtn {
-   flex-direction: column
- }
-  }
+}

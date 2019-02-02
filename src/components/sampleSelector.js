@@ -1,5 +1,4 @@
 import React from "react";
-import {Col} from 'antd';
 
 export default class SampleSelector extends React.Component {
     constructor(props) {
