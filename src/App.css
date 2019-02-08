@@ -42,14 +42,18 @@ h1 {
 .overlay a:hover {
   background: rgb(255, 73, 91)
 }
+
 .test {
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  ;
   color: rgb(187, 187, 255);
-  font-size:1.2em !important;
+  font-size: 1.2em !important;
 }
+
 .form-input {
-  margin:10px;
+  margin: 10px;
 }
+
 .main, .home {
   height: 100vh;
   /* background-color: rgba(79, 109, 163, 0.678); */
@@ -110,10 +114,10 @@ h1 {
 
 .controls {
   margin-bottom: 20px;
-  padding-left:5%;
+  padding-left: 5%;
   width: 50%;
   margin-top: 20px;
-  display:flex;
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }
@@ -140,10 +144,10 @@ button:hover {
 
 .bpm {
   margin-top: 15px;
-  margin-left:15%;
-  order:3;
-  flex-basis:60%;
-  display:flex;
+  margin-left: 15%;
+  order: 3;
+  flex-basis: 60%;
+  display: flex;
   color: #B1EDE8;
   font-weight: bold;
 }
@@ -224,11 +228,11 @@ p.link a {
   margin-top: 18px;
   margin-right: 15px;
   flex: auto;
-  /* flex: 1 */
-  /* flex-basis:1;
-    flex-grow:0;
-    flex-shrink:0; */
-  /* width:100% */
+  flex-basis: 1;
+  flex-grow: 0;
+  flex-shrink: 1;
+  width: 100%;
+  max-width: 174px;
 }
 
 .DeleteBtn {
@@ -318,12 +322,13 @@ p.link a {
     flex-direction: column
   }
 }
+
 @media only screen and (max-width: 500px) {
   .controls {
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     justify-content: space-evenly
   }
   .bpm {
-    margin-top:30px;
+    margin-top: 30px;
   }
 }
