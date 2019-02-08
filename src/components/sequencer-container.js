@@ -31,8 +31,10 @@ export class SeqContainer extends Component {
       open1: false,
       open2: false,
       userPads: [],
-      loaded: true
+      loaded: true,
+      width: window.innerWidth
     }
+    this.updateDimensions = this.updateDimensions.bind(this);
     this.togglePlaying = this.togglePlaying.bind(this);
     this.toggleActive = this.toggleActive.bind(this);
     this.changeBpm = this.changeBpm.bind(this);
@@ -44,6 +46,7 @@ export class SeqContainer extends Component {
     this.loadUsers();
   };
   componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions);
     this.loadUsers();
     // this.LoadUserPads();
     this.setState({ initialized: true });
@@ -56,6 +59,11 @@ export class SeqContainer extends Component {
   };
   componentWillReceiveProps() {
     this.loadUsers();
+  }
+  updateDimensions() {
+    this.setState({
+      width: window.innerWidth
+    });
   }
   changeMasterPower() {
     this.midiSounds.setBand32(2);
@@ -276,8 +284,8 @@ export class SeqContainer extends Component {
   }
 
   render() {
-    let width = window.innerWidth
-    if(width <=600) {
+    
+    if(this.state.width <=600) {
       return (
         <div className="main">
         <div className="App">
